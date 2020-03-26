@@ -11,13 +11,16 @@ public class GroupCreationTests {
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
+  /*
+  Борьба с "Only local connections are allowed".
+  В итоге помогли банальные чистки кэшей Win/chrome/idea, переустановка самого Chrome и перенастройка PATH.
+  Теперь сам тест проходит, хоть сообщение и осталось в консоли
+  System.setProperty("webdriver.chrome.driver", "E:\\drivers\\chromedriver.exe");
+  ChromeOptions chromeOptions = new ChromeOptions();
+  chromeOptions.addArguments("headless","--no-sandbox");
+  */
+    //wd = new ChromeDriver();
     wd = new FirefoxDriver();
-    /*wd = new ChromeDriver(); -- проблема, установила chromedriver, поколение соответсвует версии chrome, но при запуске выдает ошибку (не варнинг) ниже и тесты не проходят
-      Starting ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882}) on port 42285
-      Only local connections are allowed.
-      Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
-      unknown error: Failed to create Chrome process.
-*/
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
@@ -31,7 +34,6 @@ public class GroupCreationTests {
     wd.findElement(By.name("pass")).clear();
     wd.findElement(By.name("pass")).sendKeys("secret");
     wd.findElement(By.xpath("//input[@value='Login']")).click();
-    wd.findElement(By.id("nav")).click();
     wd.findElement(By.linkText("groups")).click();
     wd.findElement(By.name("new")).click();
     wd.findElement(By.name("group_name")).click();
