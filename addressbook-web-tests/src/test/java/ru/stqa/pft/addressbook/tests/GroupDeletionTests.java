@@ -6,11 +6,12 @@ public class GroupDeletionTests extends TestBase {
 
 
   @Test
+  // Удаление первой группы в списке
   public void testGroupDeletion() {
-    app.gotoGroupPage();
-    app.selectGroup();
-    app.deleteSelectedGroups();
-    app.returnToGroupPage();
+    app.getNavigatinHelper().gotoGroupPage();
+    app.getGroupHelper().selectGroup();
+    app.getGroupHelper().deleteSelectedGroups();
+    app.getGroupHelper().returnToGroupPage();
 
   }
 

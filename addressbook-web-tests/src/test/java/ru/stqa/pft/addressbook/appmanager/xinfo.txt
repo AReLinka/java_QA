@@ -1,0 +1,6 @@
+  Борьба с "Only local connections are allowed".
+  В итоге помогли банальные чистки кэшей Win/chrome/idea, переустановка самого Chrome и перенастройка PATH.
+  Теперь сам тест проходит, хоть сообщение и осталось в консоли
+  System.setProperty("webdriver.chrome.driver", "E:\\drivers\\chromedriver.exe");
+  ChromeOptions chromeOptions = new ChromeOptions();
+  chromeOptions.addArguments("headless","--no-sandbox");
