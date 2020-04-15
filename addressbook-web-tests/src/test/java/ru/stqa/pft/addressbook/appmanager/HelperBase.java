@@ -22,6 +22,10 @@ public class HelperBase {
     wd.findElement(locator).sendKeys(text);
   }
 
+  protected  void closeAlert () {
+    wd.switchTo().alert().accept();
+  }
+
   public boolean isElementPresent(By by) {
     try {
       wd.findElement(by);
