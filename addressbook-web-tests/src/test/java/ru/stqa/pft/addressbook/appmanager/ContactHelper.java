@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -53,6 +54,11 @@ public class ContactHelper extends HelperBase {
   }
 
   public void waitForDelMessage() {
-    isMessagePresent(By.cssSelector("BODY"), "Record successful deleted");
+    boolean check;
+    isElementPresent(By.cssSelector("div.msgbox"));
+    Assert.assertTrue(isElementPresent(By.cssSelector("div.msgbox")));
+
+    //check = isMessagePresent(By.cssSelector("div.msgbox"), "1Record successful deleted");
+    //Assert.assertTrue(check);
   }
 }

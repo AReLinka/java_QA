@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import com.sun.org.apache.xpath.internal.operations.NotEquals;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
@@ -27,10 +28,17 @@ public class HelperBase {
   }
 
   public boolean isMessagePresent(By by, String message) {
+
+
     try {
-      wd.findElement(by).getText().matches(message);
+
+      wd.findElement(by).getText().compareTo(message);
+      System.out.println("1expectedMessage" + wd.findElement(by).getText());
+      System.out.println("1real message = " + message);
       return true;
-    } catch (NoSuchElementException e) {
+    } catch (NoSuchElementException  e) {
+      System.out.println("expectedMessage" + wd.findElement(by).getText());
+      System.out.println("real message = " + message);
       return false;
     }
   }
@@ -38,8 +46,11 @@ public class HelperBase {
   public boolean isElementPresent(By by) {
     try {
       wd.findElement(by);
+      System.out.println("ElementSuccessFound = " + by);
       return true;
+
     } catch (NoSuchElementException e) {
+      System.out.println("ElementNotFound = " + by);
       return false;
     }
   }
