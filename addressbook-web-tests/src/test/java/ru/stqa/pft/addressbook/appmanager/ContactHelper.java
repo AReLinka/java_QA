@@ -39,7 +39,7 @@ public class ContactHelper extends HelperBase {
     closeAlert();
   }
 
-  public void initContactModufucation() {
+  public void initContactModification() {
     click(By.xpath("//img[@alt='Edit']"));
   }
 
@@ -50,5 +50,9 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactDeletion() {
     click(By.xpath("(//input[@name='update'])[3]"));
+  }
+
+  public void waitForDelMessage() {
+    isMessagePresent(By.cssSelector("BODY"), "Record successful deleted");
   }
 }

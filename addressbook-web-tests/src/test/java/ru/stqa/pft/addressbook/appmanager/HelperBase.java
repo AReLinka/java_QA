@@ -26,6 +26,15 @@ public class HelperBase {
     wd.switchTo().alert().accept();
   }
 
+  public boolean isMessagePresent(By by, String message) {
+    try {
+      wd.findElement(by).getText().matches(message);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
   public boolean isElementPresent(By by) {
     try {
       wd.findElement(by);

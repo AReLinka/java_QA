@@ -7,6 +7,7 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDeletion() {
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteSelectedContacts();
+    app.getContactHelper().waitForDelMessage();
     //тут наверное можно поставить ожидание автоматического возврата
   }
 }
