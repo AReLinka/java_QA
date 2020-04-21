@@ -19,8 +19,13 @@ public class HelperBase {
 
   protected void type(By locator, String text) {
     click(locator);
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
+    if (text != null) {
+      String existingText = wd.findElement(locator).getAttribute("value");
+      if (! text.equals(existingText)) {
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
+      }
+    }
   }
 
   protected  void closeAlert () {
@@ -28,10 +33,7 @@ public class HelperBase {
   }
 
   public boolean isMessagePresent(By by, String message) {
-
-
     try {
-
       wd.findElement(by).getText().compareTo(message);
       System.out.println("1expectedMessage" + wd.findElement(by).getText());
       System.out.println("1real message = " + message);
@@ -48,7 +50,6 @@ public class HelperBase {
       wd.findElement(by);
       System.out.println("ElementSuccessFound = " + by);
       return true;
-
     } catch (NoSuchElementException e) {
       System.out.println("ElementNotFound = " + by);
       return false;
