@@ -18,11 +18,11 @@ public class NavigatinHelper extends HelperBase {
     click(By.linkText("groups"));
   }
 
-  public void returnToHomePage() {
+  public void gotoHomePage() {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }
-    click(By.linkText("home page"));
+    click(By.linkText("home"));
   }
 
 }

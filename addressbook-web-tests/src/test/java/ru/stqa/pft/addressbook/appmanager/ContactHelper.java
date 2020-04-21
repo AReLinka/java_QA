@@ -55,6 +55,13 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='update'])[3]"));
   }
 
+  public void returnToHomePage() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home"));
+  }
+
   public void waitForDelMessage() {
     boolean check;
     isElementPresent(By.cssSelector("div.msgbox"));
@@ -62,5 +69,16 @@ public class ContactHelper extends HelperBase {
 
     //check = isMessagePresent(By.cssSelector("div.msgbox"), "1Record successful deleted");
     //Assert.assertTrue(check);
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    initContactCreation();
+    fillContactForm(contact, creation);
+    submitContactCreation();
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
