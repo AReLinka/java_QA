@@ -28,6 +28,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("email"), contactData.getFirstMail());
+
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
@@ -94,22 +95,20 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> rows = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr"));
-    // 0 элемент - строка с названиями ячеек таблицы, не нужна
-    rows.remove(0);
+    List<WebElement> rows = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement row : rows) {
-      List<WebElement> cells = row.findElements(By.xpath("//td"));
-      // 0 элемент - ячейка, соджержащая чек-бокс, не нужена
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      // 0 элемент - ячейка, соджержащая чек-бокс, не нужна
+      String id = row.findElement(By.tagName("input")).getAttribute("value");
       String lastName = cells.get(1).getText();
       String name = cells.get(2).getText();
       String address = cells.get(3).getText();
       String mail = cells.get(4).getText();
       String phone = cells.get(5).getText();
-     //System.out.println(name + " " + lastName + " " + address + " " + mail + " " + phone);
-      ContactData contact = new ContactData(name, lastName, address,
-                                            phone, mail, null);
+      //System.out.println(id + " " + name + " " + lastName + " " + address + " " + mail + " " + phone);
+      ContactData contact = new ContactData(id, name, lastName, address,
+              phone, mail, null);
       contacts.add(contact);
-
     }
     return contacts;
   }
