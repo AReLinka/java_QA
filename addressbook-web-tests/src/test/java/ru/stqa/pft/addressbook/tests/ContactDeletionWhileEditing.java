@@ -19,7 +19,7 @@ public class ContactDeletionWhileEditing extends TestBase {
     }
     app.getNavigatinHelper().gotoHomePage();
     int before = app.getContactHelper().getContactCount();
-    app.getContactHelper().initContactModification();
+    app.getContactHelper().initContactModification(before - 1);
     app.getContactHelper().submitContactDeletion();
     app.getContactHelper().waitForDelMessage();
     app.getNavigatinHelper().gotoHomePage();

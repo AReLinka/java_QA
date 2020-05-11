@@ -21,7 +21,7 @@ public class ContactModificationTests extends TestBase {
 
     app.getNavigatinHelper().gotoHomePage();
     int before = app.getContactHelper().getContactCount();
-    app.getContactHelper().initContactModification();
+    app.getContactHelper().initContactModification(before - 1);
     app.getContactHelper().fillContactForm(new ContactData("AlinaU", "SandygaU", "NSaint-Petersburg", "8(911)123-22-34", "2@2.ru", null), false);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnToHomePage();
