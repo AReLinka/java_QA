@@ -99,7 +99,7 @@ public class ContactHelper extends HelperBase {
     for (WebElement row : rows) {
       List<WebElement> cells = row.findElements(By.tagName("td"));
       // 0 элемент - ячейка, соджержащая чек-бокс, не нужна
-      String id = row.findElement(By.tagName("input")).getAttribute("value");
+      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
       String lastName = cells.get(1).getText();
       String name = cells.get(2).getText();
       String address = cells.get(3).getText();
