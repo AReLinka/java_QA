@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.List;
+import java.util.Set;
 
 public class ContactDeletionWhileEditing extends TestBase {
 
@@ -18,7 +18,7 @@ public class ContactDeletionWhileEditing extends TestBase {
     }
 
     app.goTo().HomePage();
-    if (app.contact().list().size() == 0) {
+    if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData()
               .withName("Alina").withLastname("Sandyga").withAddress("Saint-Petersburg")
               .withHomePhone("89111232233").withFirstMail("1@1.ru").withGroup("MyFirstGroup")
@@ -29,15 +29,15 @@ public class ContactDeletionWhileEditing extends TestBase {
   @Test
   public void testContactDeletionWhileEditing() {
     app.goTo().HomePage();
-    List<ContactData> before = app.contact().list();
-    int index = before.size() - 1;
+    Set<ContactData> before = app.contact().all();
+    ContactData deletedContact = before.iterator().next();
 
-    app.contact().deleteInModification(index);
+    app.contact().deleteInModification(deletedContact);
     app.goTo().HomePage();
-    List<ContactData> after = app.contact().list();
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size() - 1);
 
-    before.remove(index);
+    before.remove(deletedContact);
     Assert.assertEquals(before, after);
     }
 }

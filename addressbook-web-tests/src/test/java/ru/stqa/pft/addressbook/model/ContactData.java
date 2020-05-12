@@ -31,6 +31,24 @@ public class ContactData {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(homePhone, that.homePhone) &&
+            Objects.equals(firstMail, that.firstMail);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, lastname, address, homePhone, firstMail);
+  }
+
   public ContactData withFirstMail(String firstMail) {
     this.firstMail = firstMail;
     return this;
@@ -84,23 +102,6 @@ public class ContactData {
             ", homePhone='" + homePhone + '\'' +
             ", firstMail='" + firstMail + '\'' +
             '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return Objects.equals(name, that.name) &&
-            Objects.equals(lastname, that.lastname) &&
-            Objects.equals(address, that.address) &&
-            Objects.equals(homePhone, that.homePhone) &&
-            Objects.equals(firstMail, that.firstMail);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, lastname, address, homePhone, firstMail);
   }
 
 
