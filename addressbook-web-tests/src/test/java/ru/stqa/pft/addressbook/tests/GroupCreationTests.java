@@ -12,11 +12,11 @@ public class GroupCreationTests extends TestBase {
   @Test
   // Создание новой группы
   public void testGroupCreation() {
-    app.getNavigatinHelper().gotoGroupPage();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    app.goTo().GroupPage();
+    List<GroupData> before = app.group().list();
     GroupData group = new GroupData("MyFirstGroup", null, null);
-    app.getGroupHelper().createGroup(group);
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    app.group().create(group);
+    List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     before.add(group);
@@ -27,7 +27,6 @@ public class GroupCreationTests extends TestBase {
     Assert.assertEquals(before, after);
     //Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
   }
-
 }
 
     /* //Варианты вычислений максимального идентификатора

@@ -11,16 +11,16 @@ import java.util.List;
 public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification() {
-    app.getNavigatinHelper().gotoGroupPage();
-    if (!app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData("MyFirstGroup", null, null));
+    app.goTo().GroupPage();
+    if (app.group().list().size() == 0) {
+      app.group().create(new GroupData("MyFirstGroup", null, null));
     }
 
-    app.getNavigatinHelper().gotoHomePage();
+    app.goTo().HomePage();
     if (!app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Alina", "Sandyga", "Saint-Petersburg", "89111232233", "1@1.ru", "MyFirstGroup"), true);
     }
-    app.getNavigatinHelper().gotoHomePage();
+    app.goTo().HomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().initContactModification(before.size() - 1);
     ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "AlinaU", "SandygaU", "NSaint-Petersburg", "89111232234", "2@2.ru", null);
