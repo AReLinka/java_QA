@@ -11,10 +11,10 @@ import java.util.List;
 public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
-  public  void ensurePreconditions() {
+  public void ensurePreconditions() {
     app.goTo().GroupPage();
     if (app.group().list().size() == 0) {
-      app.group().create(new GroupData("MyFirstGroup", null, null));
+      app.group().create(new GroupData().withName("MyFirstGroup"));
     }
   }
 
@@ -22,7 +22,8 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification() {
     List<GroupData> before = app.group().list();
     int index = before.size() - 1;
-    GroupData group = new GroupData(before.get(index).getId(),"MyFirstGroupU", "FHeaderU", "FFooterU");
+    GroupData group = new GroupData().withId(before.get(index).getId())
+            .withName("MyFirstGroupU").withHeader("FHeaderU").withFooter("FFooterU");
     app.group().modify(index, group);
     List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(), before.size());
