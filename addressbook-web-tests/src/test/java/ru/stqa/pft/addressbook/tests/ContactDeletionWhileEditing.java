@@ -19,7 +19,10 @@ public class ContactDeletionWhileEditing extends TestBase {
 
     app.goTo().HomePage();
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData("Alina", "Sandyga", "Saint-Petersburg", "89111232233", "1@1.ru", "MyFirstGroup"), true);
+      app.contact().create(new ContactData()
+              .withName("Alina").withLastname("Sandyga").withAddress("Saint-Petersburg")
+              .withHomePhone("89111232233").withFirstMail("1@1.ru").withGroup("MyFirstGroup")
+              ,true);
     }
   }
 

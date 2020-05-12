@@ -123,8 +123,9 @@ public class ContactHelper extends HelperBase {
       String mail = cells.get(4).getText();
       String phone = cells.get(5).getText();
       //System.out.println(id + " " + name + " " + lastName + " " + address + " " + mail + " " + phone);
-      ContactData contact = new ContactData(id, name, lastName, address,
-              phone, mail, null);
+      ContactData contact = new ContactData()
+              .withId(id).withName(name).withLastname(lastName)
+              .withAddress(address).withHomePhone(phone).withFirstMail(mail);
       contacts.add(contact);
     }
     return contacts;

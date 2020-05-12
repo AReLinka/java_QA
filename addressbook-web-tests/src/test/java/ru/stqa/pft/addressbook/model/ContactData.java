@@ -3,37 +3,49 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
-  private final String name;
-  private final String lastname;
-  private final String address;
-  private final String homePhone;
-  private final String firstMail;
+  private int id = Integer.MAX_VALUE;
+  private String name;
+  private String lastname;
+  private String address;
+  private String homePhone;
+  private String firstMail;
   private String group;
 
-  public void setId(int id) {
-    this.id = id;
+  public ContactData withName(String name) {
+    this.name = name;
+    return this;
   }
 
-  public ContactData(int id, String name, String lastname, String address, String homePhone, String firstMail, String group) {
-    this.id = id;
-    this.name = name;
+  public ContactData withLastname(String lastname) {
     this.lastname = lastname;
-    this.address = address;
-    this.homePhone = homePhone;
-    this.firstMail = firstMail;
-    this.group = group;
+    return this;
   }
 
-  public ContactData(String name, String lastname, String address, String homePhone, String firstMail, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.name = name;
-    this.lastname = lastname;
+  public ContactData withAddress(String address) {
     this.address = address;
-    this.homePhone = homePhone;
-    this.firstMail = firstMail;
-    this.group = group;
+    return this;
   }
+
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withFirstMail(String firstMail) {
+    this.firstMail = firstMail;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
   public int getId() {
     return id;
   }
