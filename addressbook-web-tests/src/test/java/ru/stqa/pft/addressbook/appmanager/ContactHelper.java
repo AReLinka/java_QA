@@ -54,9 +54,11 @@ public class ContactHelper extends HelperBase {
   public void initContactModification(int index) {
     wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
-  public void initContactModificationById (int id){
+
+  public void initContactModificationById(int id) {
     wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
   }
+
   public void submitContactModification() {
     //верхняя кнопка
     click(By.name("update"));
@@ -86,6 +88,7 @@ public class ContactHelper extends HelperBase {
     initContactCreation();
     fillContactForm(contact, creation);
     submitContactCreation();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -93,18 +96,21 @@ public class ContactHelper extends HelperBase {
     initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
     returnToHomePage();
   }
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContacts();
+    contactCache = null;
     waitForDelMessage();
   }
 
   public void deleteInModification(ContactData contact) {
     initContactModificationById(contact.getId());
     submitContactDeletion();
+    contactCache = null;
     waitForDelMessage();
   }
 
@@ -116,8 +122,13 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> rows = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement row : rows) {
       List<WebElement> cells = row.findElements(By.tagName("td"));
@@ -132,9 +143,9 @@ public class ContactHelper extends HelperBase {
       ContactData contact = new ContactData()
               .withId(id).withName(name).withLastname(lastName)
               .withAddress(address).withHomePhone(phone).withFirstMail(mail);
-      contacts.add(contact);
+      contactCache.add(contact);
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
 }
