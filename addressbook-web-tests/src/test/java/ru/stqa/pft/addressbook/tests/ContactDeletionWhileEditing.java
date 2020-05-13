@@ -32,7 +32,6 @@ public class ContactDeletionWhileEditing extends TestBase {
     app.goTo().HomePage();
     Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
-
     app.contact().deleteInModification(deletedContact);
     app.goTo().HomePage();
     assertThat(app.contact().count(), equalTo(before.size() - 1));
