@@ -5,6 +5,8 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+
 public class HelperBase {
   protected WebDriver wd;
 
@@ -20,14 +22,20 @@ public class HelperBase {
     click(locator);
     if (text != null) {
       String existingText = wd.findElement(locator).getAttribute("value");
-      if (! text.equals(existingText)) {
+      if (!text.equals(existingText)) {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
       }
     }
   }
 
-  protected  void closeAlert () {
+  protected void attach(By locator, File file) {
+    if (file != null) {
+      wd.findElement(locator).sendKeys(file.getAbsolutePath());
+    }
+  }
+
+  protected void closeAlert() {
     wd.switchTo().alert().accept();
   }
 
@@ -37,7 +45,7 @@ public class HelperBase {
       System.out.println("1expectedMessage" + wd.findElement(by).getText());
       System.out.println("1real message = " + message);
       return true;
-    } catch (NoSuchElementException  e) {
+    } catch (NoSuchElementException e) {
       System.out.println("expectedMessage" + wd.findElement(by).getText());
       System.out.println("real message = " + message);
       return false;
