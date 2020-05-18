@@ -30,7 +30,9 @@ public class ContactData {
   private String thirdMail;
   private String allMails;
 
+  @Expose
   private String group;
+  @Expose
   private File photo;
 
   public ContactData withPhoto(File photo) {
