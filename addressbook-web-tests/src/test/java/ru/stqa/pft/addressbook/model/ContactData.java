@@ -32,11 +32,19 @@ public class ContactData {
 
   @Expose
   private String group;
-  @Expose
+
   private File photo;
+
+  @Expose
+  private String photoS;
 
   public ContactData withPhoto(File photo) {
     this.photo = photo;
+    return this;
+  }
+
+  public ContactData withPhotoS(String photoS) {
+    this.photoS = photoS;
     return this;
   }
 
@@ -159,6 +167,9 @@ public class ContactData {
 
   public File getPhoto() {
     return photo;
+  }
+  public String getPhotoS() {
+     return photoS;
   }
 
   @Override
