@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import com.thoughtworks.xstream.mapper.Mapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +10,7 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ContactHelper extends HelperBase {
 
@@ -75,9 +75,10 @@ public class ContactHelper extends HelperBase {
 
   public void waitForDelMessage() {
     boolean check;
+    wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     isElementPresent(By.cssSelector("div.msgbox"));
     Assert.assertTrue(isElementPresent(By.cssSelector("div.msgbox")));
-
+    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     //check = isMessagePresent(By.cssSelector("div.msgbox"), "1Record successful deleted");
     //Assert.assertTrue(check);
   }
