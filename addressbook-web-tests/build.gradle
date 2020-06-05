@@ -11,6 +11,8 @@ dependencies {
     implementation 'com.beust:jcommander:1.78'
     implementation 'com.thoughtworks.xstream:xstream-jmh:1.4.12'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+    implementation 'mysql:mysql-connector-java:8.0.20'
 }
 
 task testGroups(type: Test) {
@@ -37,6 +39,6 @@ task testContacts(type: Test) {
     }
 }
 
-/*test {
+test {
     useTestNG()
-}*/
+}
