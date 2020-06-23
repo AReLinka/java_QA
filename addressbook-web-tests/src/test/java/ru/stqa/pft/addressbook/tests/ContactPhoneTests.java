@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -15,20 +16,18 @@ public class ContactPhoneTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    String groupName;
     if (app.db().groups().size() == 0) {
       app.goTo().GroupPage();
-      groupName = "MyFirstGroup";
-      app.group().create(new GroupData().withName(groupName));
-    } else {
-      groupName = app.db().groups().iterator().next().getName();
+      app.group().create(new GroupData().withName("MyFirstGroup"));
     }
 
     if (app.db().contacts().size() == 0) {
       app.goTo().HomePage();
+      Groups groups = app.db().groups();
       app.contact().create(new ContactData()
                       .withName("Alina").withLastname("Sandyga").withAddress("Saint-Petersburg")
-                      .withHomePhone("89111232233").withFirstMail("1@1.ru").withGroup(groupName)
+                      .withHomePhone("89111232233").withFirstMail("1@1.ru")
+                      .inGroup(groups.iterator().next())
               , true);
     }
   }

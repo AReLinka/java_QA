@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,9 +21,11 @@ public class ContactAddressTests extends TestBase {
 
     if (app.db().contacts().size() == 0) {
       app.goTo().HomePage();
+      Groups groups = app.db().groups();
       app.contact().create(new ContactData()
                       .withName("Alina").withLastname("Sandyga").withAddress("Saint-Petersburg")
-                      .withHomePhone("89111232233").withFirstMail("1@1.ru").withGroup("MyFirstGroup")
+                      .withHomePhone("89111232233").withFirstMail("1@1.ru")
+                      .inGroup(groups.iterator().next())
               , true);
     }
   }

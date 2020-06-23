@@ -75,7 +75,9 @@ public class ContactDataGenerator {
         writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n",
                 contact.getName(), contact.getLastname(),
                 contact.getAddress(), contact.getFirstMail(),
-                contact.getHomePhone(), contact.getPhoto(), contact.getGroup()));
+                contact.getHomePhone(), contact.getPhoto()
+                //, contact.getGroup()
+                ));
       }
     }
   }
@@ -89,7 +91,7 @@ public class ContactDataGenerator {
               .withFirstMail(String.format("%s@ru", i))
               .withHomePhone(String.format("11%s", i))
               .withPhoto(new File("src/test/resources/stru.jpg"))
-              .withGroup("MyFirstGroup")
+           //   .withGroup("MyFirstGroup")
       );
     }
     return contacts;

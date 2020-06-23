@@ -29,14 +29,17 @@ public class ContactHelper extends HelperBase {
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("email"), contactData.getFirstMail());
     if (contactData.getPhoto() != null) {
-      attach(By.name("photo"),  new File(contactData.getPhoto()));
+      attach(By.name("photo"), new File(contactData.getPhoto()));
     }
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size()  == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText
+                (contactData.getGroups().iterator().next().getName());
+      } else {
+        Assert.assertFalse(isElementPresent(By.name("new_group")));
+      }
     }
-
   }
 
   public void submitContactCreation() {
