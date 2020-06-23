@@ -88,7 +88,7 @@ public class ContactDataGenerator {
               .withAddress(String.format("Address %s", i))
               .withFirstMail(String.format("%s@ru", i))
               .withHomePhone(String.format("11%s", i))
-              .withPhotoS("src/test/resources/stru.jpg")
+              .withPhoto(new File("src/test/resources/stru.jpg"))
               .withGroup("MyFirstGroup")
       );
     }
