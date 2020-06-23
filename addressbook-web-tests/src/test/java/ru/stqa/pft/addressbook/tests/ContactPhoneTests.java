@@ -15,16 +15,20 @@ public class ContactPhoneTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
+    String groupName;
     if (app.db().groups().size() == 0) {
       app.goTo().GroupPage();
-      app.group().create(new GroupData().withName("MyFirstGroup"));
+      groupName = "MyFirstGroup";
+      app.group().create(new GroupData().withName(groupName));
+    } else {
+      groupName = app.db().groups().iterator().next().getName();
     }
 
     if (app.db().contacts().size() == 0) {
       app.goTo().HomePage();
       app.contact().create(new ContactData()
                       .withName("Alina").withLastname("Sandyga").withAddress("Saint-Petersburg")
-                      .withHomePhone("89111232233").withFirstMail("1@1.ru").withGroup("MyFirstGroup")
+                      .withHomePhone("89111232233").withFirstMail("1@1.ru").withGroup(groupName)
               , true);
     }
   }
