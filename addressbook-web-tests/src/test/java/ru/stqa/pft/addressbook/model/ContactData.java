@@ -161,7 +161,6 @@ public class ContactData {
   public String getWorkPhone() {
     return workPhone;
   }
-
   public String getAllPhones() {
     return allPhones;
   }
@@ -186,9 +185,10 @@ public class ContactData {
     return group;
   }
 
-  public File getPhoto() {
-    return new File (photo);
+  public String getPhoto() {
+    return photo;
   }
+
 
   @Override
   public boolean equals(Object o) {
@@ -198,23 +198,30 @@ public class ContactData {
     return id == that.id &&
             Objects.equals(name, that.name) &&
             Objects.equals(lastname, that.lastname) &&
-            Objects.equals(address, that.address);
+            Objects.equals(address, that.address) &&
+            Objects.equals(homePhone, that.homePhone) &&
+            Objects.equals(firstMail, that.firstMail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, lastname, address);
+    return Objects.hash(id, name, lastname, address, homePhone, firstMail);
   }
 
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", name='" + name + '\'' +
             ", lastname='" + lastname + '\'' +
             ", address='" + address + '\'' +
             ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
             ", firstMail='" + firstMail + '\'' +
+            ", secondMail='" + secondMail + '\'' +
+            ", thirdMail='" + thirdMail + '\'' +
             '}';
   }
+
 }

@@ -5,10 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @XStreamAlias("group")
@@ -17,7 +14,7 @@ import java.util.Objects;
 public class GroupData {
   @XStreamOmitField
   @Id
-  @Column (name = "group_id")
+  @Column(name = "group_id")
   private int id = Integer.MAX_VALUE;
   @Expose
   @Column (name = "group_name")
@@ -26,6 +23,23 @@ public class GroupData {
   @Column (name = "group_header")
   @Type(type = "text")
   private String header;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupData groupData = (GroupData) o;
+    return id == groupData.id &&
+            Objects.equals(name, groupData.name) &&
+            Objects.equals(header, groupData.header) &&
+            Objects.equals(footer, groupData.footer);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, header, footer);
+  }
+
   @Expose
   @Column (name = "group_footer")
   @Type(type = "text")
@@ -65,20 +79,6 @@ public class GroupData {
 
   public String getFooter() {
     return footer;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupData groupData = (GroupData) o;
-    return id == groupData.id &&
-            Objects.equals(name, groupData.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name);
   }
 
   @Override
