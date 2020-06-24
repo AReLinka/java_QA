@@ -3,18 +3,18 @@
 <suite name="Suite1" verbose="1">
     <test name="Contacts">
         <classes>
-            <class name="ru.stqa.pft.addressbook.tests.ContactCreationTests"/>
-            <class name="ru.stqa.pft.addressbook.tests.ContactModificationTests"/>
-            <class name="ru.stqa.pft.addressbook.tests.ContactDeletionWhileEditing"/>
-            <class name="ru.stqa.pft.addressbook.tests.ContactDeletionTests"/>
+            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactCreationTests"/>
+            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactModificationTests"/>
+            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactDeletionWhileEditing"/>
+            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactDeletionTests"/>
         </classes>
     </test>
 
     <test name="Contacts verification">
         <classes>
-            <class name="ru.stqa.pft.addressbook.tests.ContactPhoneTests"/>
-            <class name="ru.stqa.pft.addressbook.tests.ContactAddressTests"/>
-            <class name="ru.stqa.pft.addressbook.tests.ContactMailTests"/>
+            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactPhoneTests"/>
+            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactAddressTests"/>
+            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactMailTests"/>
         </classes>
     </test>
 </suite>
