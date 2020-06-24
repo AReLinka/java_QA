@@ -18,8 +18,11 @@
         <property name="show_sql">true</property>
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">validate</property>
+        <property name="connection.pool_size">100</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
         <!-- Names the annotated entity class -->
         <mapping class="ru.stqa.pft.addressbook.model.ContactData"/>
         <mapping class="ru.stqa.pft.addressbook.model.GroupData"/>
+
     </session-factory>
 </hibernate-configuration>

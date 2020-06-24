@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import net.bytebuddy.build.Plugin;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -132,6 +131,10 @@ public class ContactData {
     this.id = id;
     return this;
   }
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
 
   public int getId() {
     return id;
@@ -223,8 +226,4 @@ public class ContactData {
             '}';
   }
 
-  public ContactData inGroup(GroupData group) {
-    groups.add(group);
-    return this;
-  }
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.File;
 import java.util.List;
@@ -33,7 +34,7 @@ public class ContactHelper extends HelperBase {
     }
     if (creation) {
       if (contactData.getGroups().size() > 0) {
-        Assert.assertTrue(contactData.getGroups().size()  == 1);
+        Assert.assertTrue(contactData.getGroups().size() == 1);
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText
                 (contactData.getGroups().iterator().next().getName());
       } else {
@@ -75,6 +76,24 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
+  private void selectGroupById(int groupid) {
+    new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(groupid));
+
+  }
+  public void returnGroupToAdd() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.xpath("//a[contains(text(),\"group page\")]"));
+  }
+
+  public void goToGroupContactsPage(int groupid) {
+    if (isElementPresent(By.id("maintable")) && isElementPresent(By.name("remove"))) {
+      return;
+    }
+    new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(groupid));
+  }
+
   public void waitForDelMessage() {
     boolean check;
     wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
@@ -113,6 +132,20 @@ public class ContactHelper extends HelperBase {
     submitContactDeletion();
     contactCache = null;
     waitForDelMessage();
+  }
+
+  public void addContactToGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    selectGroupById(group.getId());
+    wd.findElement(By.name("add")).click();
+    returnGroupToAdd();
+  }
+
+  public void removeContactFromGroup(ContactData contact, GroupData group) {
+    goToGroupContactsPage(group.getId());
+    selectContactById(contact.getId());
+    wd.findElement(By.name("remove")).click();
+    returnGroupToAdd();
   }
 
   public boolean isThereAContact() {
@@ -169,4 +202,5 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
             .withFirstMail(firstmail).withSecondMail(secondmail).withThirdMail(thirdmail);
   }
+
 }
