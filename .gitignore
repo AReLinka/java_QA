@@ -27,3 +27,5 @@ addressbook-web-tests/src/test/resources/contacts.xml
 
 addressbook-web-tests/out/
 
+mantis-tests/out/
+sandbox/.idea/gradle.xml
