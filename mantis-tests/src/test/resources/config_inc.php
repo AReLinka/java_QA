@@ -5,10 +5,13 @@ $g_database_name          = 'bugtracker';
 $g_db_username            = 'root';
 $g_db_password            = '';
 $g_default_timezone       = 'Europe/Berlin';
-$g_crypto_master_salt     = '4WfPlSedeOwR7AzfN+62Xs/UYDKXL0NT2x7R3xpj9Kc=';
+$g_crypto_master_salt     = 'YZjff3kjz0gHrngr0Adb2c+2QuDOmqHC0tEfqbcrJU0=';
+
+//4WfPlSedeOwR7AzfN+62Xs/UYDKXL0NT2x7R3xpj9Kc=
+//'YZjff3kjz0gHrngr0Adb2c+2QuDOmqHC0tEfqbcrJU0=';
 
 $g_signup_use_captcha     = OFF;
 
-$g_default_language = "english";
+$g_default_language       = "english";
 $g_phpMailer_method       = PHPMAILER_METHOD_SMTP;
 $g_smpt_host              = 'localhost';

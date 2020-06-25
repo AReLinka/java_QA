@@ -22,6 +22,7 @@
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
         <!-- Names the annotated entity class -->
         <mapping class="ru.stqa.pft.mantis.model.UserData"/>
+        <mapping class="ru.stqa.pft.mantis.model.Issue"/>
 
 
     </session-factory>

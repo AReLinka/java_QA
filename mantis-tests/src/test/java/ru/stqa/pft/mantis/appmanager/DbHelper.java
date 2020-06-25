@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import ru.stqa.pft.mantis.model.Issue;
+import ru.stqa.pft.mantis.model.Issues;
 import ru.stqa.pft.mantis.model.UserData;
 import ru.stqa.pft.mantis.model.Users;
 
@@ -23,11 +25,29 @@ public class DbHelper {
   }
 
   public Users usersWithoutAdmin() {
+      Session session = sessionFactory.openSession();
+      session.beginTransaction();
+      List<UserData> result = session.createQuery( "from UserData where access_level = 25" ).list();
+      session.getTransaction().commit();
+      session.close();
+    return new Users(result);
+  }
+
+  public Issues openIssues() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<UserData> result = session.createQuery( "from UserData where access_level = 25" ).list();
+    List<Issue> result = session.createQuery( "from Issue where resolution = 10" ).list();
     session.getTransaction().commit();
     session.close();
-    return new Users(result);
+    return new Issues(result);
+  }
+
+  public Issues fixIssues() {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<Issue> result = session.createQuery( "from Issue where resolution = 20" ).list();
+    session.getTransaction().commit();
+    session.close();
+    return new Issues(result);
   }
 }

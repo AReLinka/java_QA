@@ -18,7 +18,7 @@ public class Users extends ForwardingSet<UserData> {
   }
 
   public Users(Collection<UserData> users) {
-    this.delegate = new HashSet<>(users);
+    this.delegate = new HashSet<UserData>(users);
   }
 
   @Override
@@ -32,7 +32,7 @@ public class Users extends ForwardingSet<UserData> {
     return users;
   }
 
-  public Users without(Users user) {
+  public Users without(UserData user) {
     Users users = new Users(this);
     users.remove(user);
     return users;
