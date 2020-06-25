@@ -35,3 +35,10 @@ soap-sample/gradle/wrapper/gradle-wrapper.jar
 soap-sample/gradle/wrapper/gradle-wrapper.properties
 soap-sample/gradlew
 soap-sample/gradlew.bat
+
+rest-sample/gradlew.bat
+rest-sample/gradlew
+rest-sample/gradle/wrapper/gradle-wrapper.properties
+rest-sample/gradle/wrapper/gradle-wrapper.jar
+sandbox/.idea/gradle.xml
+rest-sample/out/
