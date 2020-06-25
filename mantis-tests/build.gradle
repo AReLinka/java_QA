@@ -35,6 +35,6 @@ test {
 
 }
 
-/*test {
+test {
     useTestNG()
-}*/
+}
