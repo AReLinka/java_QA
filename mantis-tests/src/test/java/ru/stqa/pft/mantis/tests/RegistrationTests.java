@@ -3,7 +3,6 @@ package ru.stqa.pft.mantis.tests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
 
 import javax.mail.MessagingException;
@@ -23,22 +22,21 @@ public class RegistrationTests extends TestBase {
   public void testRegistration() throws IOException, MessagingException {
     long now = System.currentTimeMillis();
     String email = String.format("user%s@localhost.localdomain", now);
+  //  String email = String.format("user%s@localhost", now);
     String user = String.format("user%s", now);
     String password = "password";
+
+   // app.james().createUser(user, password);
     app.registration().start(user, email);
     List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-    String confirmationLink = findConfirmationLink(email, mailMessages);
+ //   List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000);
+    String confirmationLink =  app.mail().findConfirmationLink(email, mailMessages);
     app.registration().finish(confirmationLink, password);
     assertTrue (app.newSession().login(user, password));
   }
 
-  public String findConfirmationLink(String email, List<MailMessage> mailMessages) {
-    MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
-    VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
-    return regex.getText(mailMessage.text);
-  }
 
-  @AfterMethod (alwaysRun = true)
+  @AfterMethod(alwaysRun = true)
   public void stopMailServer() {
     app.mail().stop();
   }
