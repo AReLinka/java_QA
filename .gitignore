@@ -42,3 +42,6 @@ rest-sample/gradle/wrapper/gradle-wrapper.properties
 rest-sample/gradle/wrapper/gradle-wrapper.jar
 sandbox/.idea/gradle.xml
 rest-sample/out/
+sandbox/.idea/gradle.xml
+
+github-sample/out/
