@@ -29,3 +29,9 @@ addressbook-web-tests/out/
 
 mantis-tests/out/
 sandbox/.idea/gradle.xml
+
+soap-sample/out/
+soap-sample/gradle/wrapper/gradle-wrapper.jar
+soap-sample/gradle/wrapper/gradle-wrapper.properties
+soap-sample/gradlew
+soap-sample/gradlew.bat
