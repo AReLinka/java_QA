@@ -8,7 +8,6 @@ $g_default_timezone       = 'Europe/Berlin';
 $g_crypto_master_salt     = 'YZjff3kjz0gHrngr0Adb2c+2QuDOmqHC0tEfqbcrJU0=';
 
 //4WfPlSedeOwR7AzfN+62Xs/UYDKXL0NT2x7R3xpj9Kc=
-//'YZjff3kjz0gHrngr0Adb2c+2QuDOmqHC0tEfqbcrJU0=';
 
 $g_signup_use_captcha     = OFF;
 
